@@ -49,7 +49,8 @@ THE CLOSENESS CENTRALITY PROBLEM AND THE IMPLEMENTED STRATEGY:
 
  I would like to emphasize that the aforementioned strategy 
  is not entirely optimized due to lack of time, spent 
- learning and developing the web server structure.
+ developing the web server structure in order to 
+ have a deliverable by today.
  
 -------------------------------------------------------------------------------
 TECHNOLOGY REQUIREMENTS:
@@ -62,6 +63,7 @@ TECHNOLOGY REQUIREMENTS:
 	-- Jersey API 1.18
 	-- Tomcat v6.0
 	-- Git 1.9.1
+
 -------------------------------------------------------------------------------
 BUILDING AND DEPLOYING THE PROJECT:
 
@@ -104,7 +106,7 @@ RUNNING THE APPLICATION:
  the required input located at "classes/edges.txt". 
  It can be tested through the command: 
  
- 	java -jar $CATALINA_HOME/target/closenesscentrality-0.1.0.jar
+ 	java -jar $PROJECT_HOME/target/closenesscentrality-0.1.0.jar
  
  For the web service part, the closenesscentrality-0.1.0.war 
  is automatically deployed to Tomcat application server by Maven script.
