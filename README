@@ -23,7 +23,7 @@ THE CLOSENESS CENTRALITY PROBLEM AND THE IMPLEMENTED STRATEGY:
   classical computer science algorithms and data-structures.
  
  For computing the shortest-path between two nodes of a graph, 
-  we implemented the breadth-first search (BFS) technique.
+  I implemented the breadth-first search (BFS) technique.
   This technique traverses a given graph starting from an initial 
   node and visiting all the neighboring nodes.
   Then for each of those nearest nodes, it visits their 
