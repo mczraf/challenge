@@ -30,7 +30,7 @@ THE CLOSENESS CENTRALITY PROBLEM AND THE IMPLEMENTED STRATEGY:
   unexplored neighbor nodes and so on.
   Its complexity is O(|V| + |E|), where |V| is the number of 
   nodes and |E| is the number of edges in the graph.
-  BFS requires the consecrated queue data structure, which has
+  BFS requires the queue data structure, which has
   been implemented as well.
  
   The breadth-first search algorithm is called for each node. 
