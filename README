@@ -1,0 +1,170 @@
+-------------------------------------------------------------------------------
+
+ Closeness Centrality Project v0.1
+ 
+ Author:  Rafael Misoczki
+ Contact: rafa.misoczki@gmail.com
+
+-------------------------------------------------------------------------------
+THE PROBLEM AND THE IMPLEMENTED STRATEGY:
+
+ This project addresses the problem known as closeness centrality, 
+  often seen in applications of graph-theory onto social networks.
+ 
+ The main goal of this particular project is to rank the nodes 
+  of a given graph by their closeness.
+ 
+ The closeness of a node v is the inverse of the sum of the 
+  shortest path distances from all other nodes to v.
+  (When the node is not connected to the graph, I assume an 
+  infinity distance and thus a 0-closeness factor). 
+
+ The chosen approach to tackle this problem is founded upon
+  classical computer science algorithms and data-structures.
+ 
+ For computing the shortest-path between two nodes of a graph, 
+  we implemented the breadth-first search (BFS) technique.
+  This technique traverses a given graph starting from an initial 
+  node and visiting all the neighboring nodes.
+  Then for each of those nearest nodes, it visits their 
+  unexplored neighbor nodes and so on.
+  Its complexity is O(|V| + |E|), where |V| is the number of 
+  nodes and |E| is the number of edges in the graph.
+  BFS requires the consecrated queue data structure, which has
+  been implemented as well.
+ 
+  The breadth-first search algorithm is called for each node. 
+  Therefore the complexity so far is estimated as O(|V|^2 + |V||E|).
+ 
+  The sum of the shortest path distances is computed by a naïve 
+   quadratic algorithm with respect to the number of nodes.
+
+  To conclude, the ranking step is computed through the 
+  quick-sort algorithm, which has been implemented as well.
+  It has complexity O(|V|^2), but for the vast majority of 
+  inputs it performs in O(|V| \log |V|) complexity.
+ 
+  Therefore the overall complexity is upper bounded by the 
+  graph-step, i.e.: O(|V|^2 + |V||E|).
+
+ I would like to emphasize that the aforementioned strategy 
+ is not entirely optimized due to lack of time, spent 
+ learning and developing the web server structure.
+ 
+-------------------------------------------------------------------------------
+TECHNOLOGY REQUIREMENTS:
+
+ The chosen programming language is Java 7 and the 
+ RESTful web service architecture is devised upon the Jersey API,
+ which is the reference implementation of JSR 311 (JAX-RS).
+ 
+	-- Java JDK 1.7
+	-- Jersey API 1.18
+	-- Tomcat v6.0
+	-- Git 1.9.1
+-------------------------------------------------------------------------------
+BUILDING AND DEPLOYING THE PROJECT:
+
+ -- Configuring Tomcat 6 for accepting deploying from Maven:
+ 
+ 	Add a manager user in $CATALINA_HOME/conf/tomcat-users.xml
+ 		
+ 		<role rolename="manager-gui"/>
+ 		<role rolename="manager-script"/>
+ 		<user username="admin" password="password" roles="manager-gui,manager-script"/>
+ 	
+ 	Start Tomcat 6:
+ 	
+ 		./$CATALINA_HOME/bin/startup.sh
+ 		
+ -- Add a server into Maven setting.xml file:
+ 
+ 	<servers>
+ 	...
+ 	<server>
+        <id>localhost</id>
+        <username>admin</username>
+        <password>password</password>
+  	</server>
+ 	...
+ 	</servers>
+ 
+ -- Running Maven deploy:
+ 
+ 	./$PROJECT_HOME/mvn tomcat6:deploy
+ 	
+ It will build closenesscentrality-0.1.0.jar.jar and  
+ closenesscentrality-0.1.0.war files within /$PROJECT_HOME/target/.
+
+------------------------------------------------------------------------------- 
+RUNNING THE APPLICATION:
+ 
+ The closenesscentrality-0.1.0.jar file concerns the first part 
+ of the challenge. It computes the closeness centrality for
+ the required input located at "classes/edges.txt". 
+ It can be tested through the command: 
+ 
+ 	java -jar $CATALINA_HOME/target/closenesscentrality-0.1.0.jar
+ 
+ For the web service part, the closenesscentrality-0.1.0.war 
+ is automatically deployed to Tomcat application server by Maven script.
+ 
+ There are three endpoints, aimed at:
+ 
+ 	-- Create a graph
+ 	-- Add one or several edges to the graph
+ 	-- Compute the closeness centrality of the current graph
+ 	
+ The endpoints are accessible through calls using curl:
+ 
+ 	-- To create a graph:
+ 	
+ 	curl -X PUT -HContent-type:application/xml --data "<requestcreategraph><maxnodes>100</maxnodes></requestcreategraph>" http://localhost:8080/closenesscentrality/rest/graph
+ 
+ 	The XML to be sent has the form:
+ 	<requestcreategraph>
+ 		<maxnodes>100</maxnodes>   <!-- Maximum number of nodes in the graph -->
+ 	</requestcreategraph>
+ 	
+ 	-- To add one or several edges to the graph:
+ 	
+ 	curl -X POST -HContent-type:application/xml --data "<requestaddedges><edge><node1>1</node1><node2>2</node2></edge><edge><node1>3</node1><node2>4</node2></edge></requestaddedges>" http://localhost:8080/closenesscentrality/rest/graph
+ 	
+ 	The XML to be sent has the form:
+ 	<requestaddedges>
+ 		<edge>					<!-- Arbitrary number of edges -->
+ 			<node1>1</node1>
+ 			<node2>2</node2>
+ 		</edge>
+ 		<edge>
+ 			<node1>3</node1>
+ 			<node2>4</node2>
+ 		</edge>
+ 	</requestaddedges>
+ 	
+ 	-- To compute the closeness centrality of the current graph
+ 	
+	curl -X GET http://localhost:8080/closenesscentrality/rest/graph
+	
+	The XML to be received, which is sorted by the closeness factor, 
+	has the form:
+	
+	<responseGraphCentrality>
+		<node>
+			<closeness>0.320</closeness>
+			<index>3</index>
+		</node>
+		<node>
+			<closeness>0.314</closeness>
+			<index>2</index>
+		</node>
+		<node>
+			<closeness>0.218</closeness>
+			<index>4</index>
+		</node>
+ 		...
+	</responseGraphCentrality>
+
+-------------------------------------------------------------------------------
+ 		
+
