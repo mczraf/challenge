@@ -70,6 +70,8 @@ BUILDING AND DEPLOYING THE PROJECT:
  Let:
  	-- $CATALINA_HOME be the Tomcat's directory.
  	-- $PROJECT_HOME be the project's directory.
+ 	-- $MAVEN_CFG be the Maven's configuration directory.
+ 		In Ubuntu's OS, $MAVEN_CFG is /etc/maven.
 
  I- Configuring Tomcat 6 for accepting deployment from Maven:
  
@@ -83,7 +85,7 @@ BUILDING AND DEPLOYING THE PROJECT:
  	
  		./$CATALINA_HOME/bin/startup.sh
  		
- II- Add a server into Maven setting.xml file:
+ II- Add a server into Maven config file located at $MAVEN_CFG/settings.xml:
  
  	<servers>
  	...
