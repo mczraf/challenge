@@ -22,15 +22,19 @@ import com.closenesscentrality.bean.xml.RequestCreateGraph;
 import com.closenesscentrality.bean.xml.ResponseGraphCentrality;
 import com.closenesscentrality.core.GraphUtils;
 
-//TODO: Comment all methods of this class:
-
 @Path("/graph")
 public class GraphResource {
 	@Context
 	UriInfo uriInfo;
 	@Context
 	Request request;
-	
+
+	/**
+	 * Receives and parse the request for the creation of a graph.
+	 * 
+	 * @param jaxbContact
+	 * @return Response
+	 */
 	@PUT
 	@Consumes(MediaType.APPLICATION_XML)
 	public Response createGraph(JAXBElement<RequestCreateGraph> jaxbContact) {
@@ -40,7 +44,12 @@ public class GraphResource {
 		return processCreateGraph(requestCreateGraph);
 	}
 
-	//TODO: Improve response with more detailed info.
+	/**
+	 * Process the request for the creation of a graph.
+	 * 
+	 * @param requestCreateGraph
+	 * @return Response
+	 */
 	private Response processCreateGraph(RequestCreateGraph requestCreateGraph) {
 
 		Graph.createGraph(requestCreateGraph.getMaxNodes());
@@ -50,6 +59,12 @@ public class GraphResource {
 		return response;
 	}
 	
+	/**
+	 * Receives and parse the request for the addition of edges.
+	 * 
+	 * @param jaxbContact
+	 * @return Response
+	 */
 	@POST
 	@Consumes(MediaType.APPLICATION_XML)
 	public Response addEdges(JAXBElement<RequestAddEdges> jaxbContact) {
@@ -59,7 +74,12 @@ public class GraphResource {
 		return processAddEdges(requestAddEdges);
 	}
 
-	//TODO: Improve response with more detailed info.
+	/**
+	 * Process the request for the addition of edges.
+	 * 
+	 * @param requestAddEdges
+	 * @return Response
+	 */
 	private Response processAddEdges(RequestAddEdges requestAddEdges) {
 		
 		Response response;
@@ -86,6 +106,10 @@ public class GraphResource {
     	return response;
 	}
 
+	/**
+	 * Receives and process the request for the closeness centrality computation.
+	 * @return Response
+	 */
 	@GET
 	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
 	public ResponseGraphCentrality getCentrality() {
