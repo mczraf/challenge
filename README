@@ -6,7 +6,7 @@
  Contact: rafa.misoczki@gmail.com
 
 -------------------------------------------------------------------------------
-THE PROBLEM AND THE IMPLEMENTED STRATEGY:
+THE CLOSENESS CENTRALITY PROBLEM AND THE IMPLEMENTED STRATEGY:
 
  This project addresses the problem known as closeness centrality, 
   often seen in applications of graph-theory onto social networks.
