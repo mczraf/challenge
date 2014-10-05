@@ -33,31 +33,33 @@ THE CLOSENESS CENTRALITY PROBLEM AND THE IMPLEMENTED STRATEGY:
   BFS requires the queue data structure, which has
   been implemented as well.
  
-  The breadth-first search algorithm is called for each node. 
+ The breadth-first search algorithm is called for each node. 
   Therefore the complexity so far is estimated as O(|V|^2 + |V||E|).
  
-  The sum of the shortest path distances is computed by a naïve 
+ The sum of the shortest path distances is computed by a naïve 
    quadratic algorithm with respect to the number of nodes.
 
-  To conclude, the ranking step is computed through the 
+ To conclude, the ranking step is computed through the 
   quick-sort algorithm, which has been implemented as well.
   It has complexity O(|V|^2), but for the vast majority of 
   inputs it performs in O(|V| \log |V|) complexity.
  
-  Therefore the overall complexity is upper bounded by the 
+ Therefore the overall complexity is upper bounded by the 
   graph-step, i.e.: O(|V|^2 + |V||E|).
 
- I would like to emphasize that the aforementioned strategy 
- is not entirely optimized due to lack of time, spent 
- developing the web server structure in order to 
- have a deliverable by today.
+
+ I am pretty sure that there's room for many improvements 
+  (for example, what's presented in those papers I mentioned 
+  before and even more simple stuff), but in order to have a 
+  deliverable by today, I needed to move on from 1st 
+  to 2nd part of the challenge.
  
 -------------------------------------------------------------------------------
 TECHNOLOGY REQUIREMENTS:
 
  The chosen programming language is Java 7 and the 
- RESTful web service architecture is devised upon the Jersey API,
- which is the reference implementation of JSR 311 (JAX-RS).
+  RESTful web service architecture is devised upon the Jersey API,
+  which is the reference implementation of JSR 311 (JAX-RS).
  
 	-- Java JDK 1.7
 	-- Jersey API 1.18
@@ -102,14 +104,14 @@ BUILDING AND DEPLOYING THE PROJECT:
 RUNNING THE APPLICATION:
  
  The closenesscentrality-0.1.0.jar file concerns the first part 
- of the challenge. It computes the closeness centrality for
- the required input located at "classes/edges.txt". 
- It can be tested through the command: 
+  of the challenge. It computes the closeness centrality for
+  the required input located at "classes/edges.txt". 
+  It can be tested through the command: 
  
  	java -jar $PROJECT_HOME/target/closenesscentrality-0.1.0.jar
  
  For the web service part, the closenesscentrality-0.1.0.war 
- is automatically deployed to Tomcat application server by Maven script.
+  is automatically deployed to Tomcat application server by Maven script.
  
  There are three endpoints, aimed at:
  
