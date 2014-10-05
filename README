@@ -47,12 +47,11 @@ THE CLOSENESS CENTRALITY PROBLEM AND THE IMPLEMENTED STRATEGY:
  Therefore the overall complexity is upper bounded by the 
   graph-step, i.e.: O(|V|^2 + |V||E|).
 
-
- I am pretty sure that there's room for many improvements 
-  (for example, what's presented in those papers I mentioned 
-  before and even more simple stuff), but in order to have a 
-  deliverable by today, I needed to move on from 1st 
-  to 2nd part of the challenge.
+ I am pretty sure that there's room for many improvements
+  in this strategy (for example, what's presented in 
+  the papers I mentioned in previous emails, or even more 
+  simple stuff). But in order to have a deliverable by today, 
+  I needed to move on from 1st to 2nd part of the challenge.
  
 -------------------------------------------------------------------------------
 TECHNOLOGY REQUIREMENTS:
