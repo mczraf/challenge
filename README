@@ -63,14 +63,17 @@ TECHNOLOGY REQUIREMENTS:
 	-- Java JDK 1.7
 	-- Jersey API 1.18
 	-- Tomcat v6.0
-	-- Git 1.9.1
 
 -------------------------------------------------------------------------------
 BUILDING AND DEPLOYING THE PROJECT:
 
- -- Configuring Tomcat 6 for accepting deploying from Maven:
+ Let:
+ 	-- $CATALINA_HOME be the Tomcat's directory.
+ 	-- $PROJECT_HOME be the project's directory.
+
+ I- Configuring Tomcat 6 for accepting deployment from Maven:
  
- 	Add a manager user in $CATALINA_HOME/conf/tomcat-users.xml
+ 	Add a manager user in $CATALINA_HOME/conf/tomcat-users.xml:
  		
  		<role rolename="manager-gui"/>
  		<role rolename="manager-script"/>
@@ -80,7 +83,7 @@ BUILDING AND DEPLOYING THE PROJECT:
  	
  		./$CATALINA_HOME/bin/startup.sh
  		
- -- Add a server into Maven setting.xml file:
+ II- Add a server into Maven setting.xml file:
  
  	<servers>
  	...
@@ -92,12 +95,12 @@ BUILDING AND DEPLOYING THE PROJECT:
  	...
  	</servers>
  
- -- Running Maven deploy:
+ III- Running Maven deploy:
  
  	./$PROJECT_HOME/mvn tomcat6:deploy
  	
  It will build closenesscentrality-0.1.0.jar.jar and  
- closenesscentrality-0.1.0.war files within /$PROJECT_HOME/target/.
+ closenesscentrality-0.1.0.war files in /$PROJECT_HOME/target/.
 
 ------------------------------------------------------------------------------- 
 RUNNING THE APPLICATION:
@@ -109,14 +112,14 @@ RUNNING THE APPLICATION:
  
  	java -jar $PROJECT_HOME/target/closenesscentrality-0.1.0.jar
  
- For the web service part, the closenesscentrality-0.1.0.war 
+ Regarding the web service part, the closenesscentrality-0.1.0.war 
   is automatically deployed to Tomcat application server by Maven script.
  
- There are three endpoints, aimed at:
+ The three endpoints developed aim at:
  
- 	-- Create a graph
- 	-- Add one or several edges to the graph
- 	-- Compute the closeness centrality of the current graph
+ 	-- Creating a graph
+ 	-- Adding one or several edges to the graph
+ 	-- Computing the closeness centrality of the current graph
  	
  The endpoints are accessible through calls using curl:
  
@@ -135,7 +138,7 @@ RUNNING THE APPLICATION:
  	
  	The XML to be sent has the form:
  	<requestaddedges>
- 		<edge>					<!-- Arbitrary number of edges -->
+ 		<edge>					
  			<node1>1</node1>
  			<node2>2</node2>
  		</edge>
@@ -143,6 +146,7 @@ RUNNING THE APPLICATION:
  			<node1>3</node1>
  			<node2>4</node2>
  		</edge>
+ 		...						<!-- Arbitrary number of edges -->
  	</requestaddedges>
  	
  	-- To compute the closeness centrality of the current graph
